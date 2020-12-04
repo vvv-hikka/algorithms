@@ -18,17 +18,17 @@ i = random.randint(i, 300+i)
 for m in range(1, 101):
 
     if m < 10:
-        inp_t = 'input/input00'+str(m)+'.txt'
+        inp_t = '../input/input00'+str(m)+'.txt'
         inp = open(inp_t, 'w+')
-        out = open('output/output00'+str(m)+'.txt', 'w')
+        out = open('../output/output00'+str(m)+'.txt', 'w')
     elif m < 100:
-        inp_t = 'input/input0'+str(m)+'.txt'
+        inp_t = '../input/input0'+str(m)+'.txt'
         inp = open(inp_t, 'w+')
-        out = open('output/output0'+str(m)+'.txt', 'w')
+        out = open('../output/output0'+str(m)+'.txt', 'w')
     else:
-        inp_t = 'input/input100.txt'
+        inp_t = '../input/input100.txt'
         inp = open(inp_t, 'w+')
-        out = open('output/output100.txt', 'w')
+        out = open('../output/output100.txt', 'w')
 
     i += 300
     inp.write(str(i)+'\n')
@@ -39,7 +39,7 @@ for m in range(1, 101):
 
     inp.close()
 
-    cmd = subprocess.Popen(f + " " + inp_t, stdout=PIPE)
+    cmd = subprocess.Popen("../" + f + " " + inp_t, stdout=PIPE)
     print(m)
     cmd_out, cmd_err = cmd.communicate()
 

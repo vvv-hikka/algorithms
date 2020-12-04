@@ -9,11 +9,11 @@ y = []
 for m in range(1, 101):
 
     if m < 10:
-        out = open('output/output00'+str(m)+'.txt', 'r')
+        out = open('../output/output00'+str(m)+'.txt', 'r')
     elif m < 100:
-        out = open('output/output0'+str(m)+'.txt', 'r')
+        out = open('../output/output0'+str(m)+'.txt', 'r')
     else:
-        out = open('output/output100.txt', 'r')
+        out = open('../output/output100.txt', 'r')
 
     input_argv = out.read().splitlines()
 
@@ -29,4 +29,4 @@ graph.minorticks_on()
 graph.grid(which='minor', color='gray', linestyle=':')
 graph.set_xlabel('number of elements')
 graph.set_ylabel('microseconds')
-fig.savefig(f + '.png')
+fig.savefig("../" + f + '.png')

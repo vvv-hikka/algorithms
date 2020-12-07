@@ -1,6 +1,8 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 struct timeval tv1,tv2,dtv;
 
@@ -23,31 +25,43 @@ long time_stop(){
 
 	return dtv.tv_sec*1000+dtv.tv_usec/1000;
 }
-
+/*
 double pow(double x, double y){
 	double result = 1;
 	for(int i = 0; i<y; i++){
 		result*=x;
 	}
 	return result;
-}
+}*/
 
 void sort(int *a, int n){
+	int count = 1;
 	int i = 1;
+	int * m = malloc(sizeof(int)*count);
+	m[count-1] = i;
 	while(3*i <= n){
-    	for(int j = i; j<n; j++){
-        	for(int k = j-i; (k>=0)&&(a[k]>a[k+i]); k-=i){
-	            int m = a[k];
-	            a[k] = a[k+i];
-				a[k+i] = m;
+		count++;
+		if(count%2==0){
+			i = 9*pow(2, count)-9*pow(2, count/2)+1;
+		} else {
+			i = 8*pow(2, count)-6*pow(2, count/2)+1;
+		}
+		m = realloc(m, sizeof(int)*count*2);
+		if(m)
+			m[count-1] = i;
+		else
+			printf("realloc error");
+	}
+	for(int i = count-1; i>=0; i--){
+    	for(int j = m[i]; j<n; j++){
+        	for(int k = j-m[i]; (k>=0)&&(a[k]>a[k+m[i]]); k-=m[i]){
+	            int tmp = a[k];
+	            a[k] = a[k+m[i]];
+				a[k+m[i]] = tmp;
         	}
         }
-        if(i%2==0){
-			i = 9*pow(2, i)-9*pow(2, i/2)+1;
-		} else {
-			i = 8*pow(2, i)-6*pow(2, i/2)+1;
-		}
     }
+    free(m);
 }
 
 int main(int argc, char * argv[]){

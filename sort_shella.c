@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -38,7 +39,7 @@ void sort(int *a, int n){
 	int i = 1;
 	int * m = malloc(sizeof(int)*count);
 	m[count-1] = i;
-	while(3*count <= n){
+	while(3*i <= n){
 		count++;
 		if(count%2==0){
 			i = 9*pow(2, count)-9*pow(2, count/2)+1;
@@ -51,9 +52,9 @@ void sort(int *a, int n){
 		else
 			printf("realloc error");
 	}
-	for(int i = count-1; i>0; i--){	
-    	for(int j = i; j<n; j++){
-        	for(int k = m[j-i]; (k>=0)&&(a[k]>a[k+m[i]]); k-=m[i]){
+	for(int i = count-1; i>=0; i--){
+    	for(int j = m[i]; j<n; j++){
+        	for(int k = j-m[i]; (k>=0)&&(a[k]>a[k+m[i]]); k-=m[i]){
 	            int tmp = a[k];
 	            a[k] = a[k+m[i]];
 				a[k+m[i]] = tmp;

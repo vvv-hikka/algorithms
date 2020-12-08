@@ -18,7 +18,7 @@ for m in range(1, 101):
     input_argv = out.read().splitlines()
 
     x.append(int(input_argv[0]))
-    y.append(int(input_argv[3]))
+    y.append(int(input_argv[1]))
     out.close()
 
 f = input('enter the name of the file: ')

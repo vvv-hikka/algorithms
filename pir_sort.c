@@ -78,10 +78,10 @@ int main(int argc, char * argv[]){
     time_start();
     sort(a, n);
     
+    printf("%ld\r", time_stop());
     for(int i = 0; i<n; i++){
         printf("%d ", a[i]);
     }
-    printf("\n%ld", time_stop());
     free(a);
     return 0;
 }

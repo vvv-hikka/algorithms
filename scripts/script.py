@@ -11,6 +11,7 @@ def check_results(a):
 
 
 f = input('enter the name of the program: ')
+subprocess.run("gcc -o ../" + f + ".exe ../" + f + ".c")
 
 i = 1
 i = random.randint(i, 300+i)
@@ -39,7 +40,7 @@ for m in range(1, 101):
 
     inp.close()
 
-    cmd = subprocess.Popen("../" + f + " " + inp_t, stdout=PIPE)
+    cmd = subprocess.Popen("../" + f + ".exe " + inp_t, stdout=PIPE)
     print(m)
     cmd_out, cmd_err = cmd.communicate()
 

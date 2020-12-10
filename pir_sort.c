@@ -25,39 +25,38 @@ long time_stop(){
 	return dtv.tv_sec*1000+dtv.tv_usec/1000;
 }
 
-void tree(int * a, int n, int i){
-	int tmp;
-	if(2*i+2<n){
-		if(a[i]>a[2*i+1]){
-			tmp = a[i];
-			a[i] = a[2*i+1];
-			a[2*i+1] = tmp;
+void swap(int * a, int * b)
+{
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+
+void tree(int * a, int n, int l){
+    int min;
+	while(2*l+2<n){
+		if(a[2*l+1]<a[2*l+2]){
+			min = 2*l+2;
+		} else {
+            min = 2*l+1;
+        }
+		if(a[min]>a[l]){
+            swap(&a[min], &a[l]);
 		}
-		if(a[i]>a[2*i+2]){
-			tmp = a[i];
-			a[i] = a[2*i+2];
-			a[2*i+2] = tmp;
-		}
-		tree(a, n, 2*i+1);
-		tree(a, n, 2*i+2);
-	} else if(2*i+1<n){
-		if(a[i]>a[2*i+1]){
-			tmp = a[i];
-			a[i] = a[2*i+1];
-			a[2*i+1] = tmp;
-		}
+		l = min;
 	}
 }
 
 void sort(int*a, int n) {
-	for (int i = n/2; i >= 0; i--){
-		//for (int l= n/2-1- i/2; l >=0; l--){
-			tree(a, n, i);
-		//}
-	}
-	if(n!=0){
-		sort(&a[1], n-1);
-	}
+    int tmp;
+    for (int l = n/2-1; l>=0; l--){
+        tree(a, n, l);
+    }
+    for (int i = n - 1; i > 0; --i){
+        swap(&a[0], &a[i]);
+        tree(a, i, 0);
+    }
 }
 
 int main(int argc, char * argv[]){

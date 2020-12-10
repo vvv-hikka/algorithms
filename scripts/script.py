@@ -4,8 +4,8 @@ import random
 
 
 def check_results(a):
-    for l in range(len(a)-2):
-        if a[l] > a[l+1]:
+    for l in range(len(a)-1):
+        if a[l+1] > a[l+1]:
             return 'false'
     return 'true'
 
